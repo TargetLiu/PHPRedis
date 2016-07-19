@@ -2,9 +2,8 @@
 
 ## Installation
 
+- Install [PhpRedis](https://pecl.php.net/package/redis)
 - Run `composer require targetliu/phpredis`
-
-
 - Add `$app->register(TargetLiu\PHPRedis\PHPRedisServiceProvider::class);` in *bootstrap/app.php*
 - Add 
 
@@ -17,6 +16,7 @@
 to **stores** in *config/cache.php* or *vendor/larvel/lumen-framework/config/app.php* in order to use PhpRedis with Lumen cache
 
 - Configure redis in *.env*
+- Set `CACHE_DRIVER=phpredis` in *.env*
 
 ## Usage
 
