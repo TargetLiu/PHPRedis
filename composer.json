@@ -2,7 +2,7 @@
     "name": "targetliu/phpredis",
     "description": "PhpRedis for Lumen 5.*",
     "require": {
-        "laravel/lumen-framework": "5.2.*"
+        "laravel/lumen-framework": "5.*.*"
     },
     "authors": [
         {
