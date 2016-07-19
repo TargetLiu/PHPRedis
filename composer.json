@@ -1,0 +1,21 @@
+{
+    "name": "targetliu/phpredis",
+    "description": "PhpRedis for Lumen 5.*",
+    "require": {
+        "laravel/lumen-framework": "5.2.*"
+    },
+    "authors": [
+        {
+            "name": "TargetLiu",
+            "email": "os@targetliu.com",
+            "homepage": "http://targetliu.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "TargetLiu\\PHPRedis\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
