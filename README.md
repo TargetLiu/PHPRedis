@@ -5,6 +5,7 @@
 - Install [PhpRedis](https://pecl.php.net/package/redis)
 - Run `composer require targetliu/phpredis`
 - Add `$app->register(TargetLiu\PHPRedis\PHPRedisServiceProvider::class);` in *bootstrap/app.php*
+- Add `$app->register(TargetLiu\PHPRedis\CacheServiceProvider::class);` in *bootstrap/app.php* in order to use PhpRedis with Lumen cache
 - Add 
 
 ```
