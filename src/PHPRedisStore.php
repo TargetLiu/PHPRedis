@@ -42,7 +42,7 @@ class PHPRedisStore implements Store
      */
     public function get($key)
     {
-        if (!is_null($value = $this->connection()->get($this->prefix . $key))) {
+        if ($value = $this->connection()->get($this->prefix . $key)) {
             return is_numeric($value) ? $value : unserialize($value);
         }
     }
