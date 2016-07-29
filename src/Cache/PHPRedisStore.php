@@ -1,6 +1,6 @@
 <?php
 
-namespace TargetLiu\PHPRedis;
+namespace TargetLiu\PHPRedis\Cache;
 
 use Illuminate\Contracts\Cache\Store;
 
@@ -10,7 +10,7 @@ class PHPRedisStore implements Store
     /**
      * The Redis database connection.
      *
-     * @var \Illuminate\Redis\Database
+     * @var \Redis
      */
     protected $redis;
 
@@ -24,7 +24,7 @@ class PHPRedisStore implements Store
     /**
      * Create a new Redis store.
      *
-     * @param  \Illuminate\Redis\Database  $redis
+     * @param  \Redis  $redis
      * @param  string  $prefix
      * @return void
      */
@@ -163,7 +163,7 @@ class PHPRedisStore implements Store
     /**
      * Get the Redis connection instance.
      *
-     * @return \Predis\ClientInterface
+     * @return \Redis
      */
     public function connection()
     {
@@ -173,7 +173,7 @@ class PHPRedisStore implements Store
     /**
      * Get the Redis database instance.
      *
-     * @return \Illuminate\Redis\Database
+     * @return \Redis
      */
     public function getRedis()
     {

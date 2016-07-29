@@ -1,6 +1,6 @@
 <?php
 
-namespace TargetLiu\PHPRedis;
+namespace TargetLiu\PHPRedis\Cache;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
