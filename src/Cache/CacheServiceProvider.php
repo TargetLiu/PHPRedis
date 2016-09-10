@@ -15,7 +15,7 @@ class CacheServiceProvider extends ServiceProvider
     public function boot()
     {
         Cache::extend('phpredis', function ($app) {
-            return Cache::repository(new PHPRedisStore($app->make('phpredis'), $app->config['cache.prefix']));
+            return Cache::repository(new PHPRedisStore($app->make('phpredis'), $app->config['cache.prefix'], $app->config['cache.stores.phpredis.connection']));
         });
     }
 

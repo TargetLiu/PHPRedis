@@ -1,6 +1,11 @@
 # [PhpRedis](https://github.com/phpredis/phpredis) for Lumen 5.*
 
 ## Update
+
+### 1.2.0
+
+1. You can chose different Redis connections.(According to [issue #1](https://github.com/TargetLiu/PHPRedis/issues/1))
+
 ### 1.1.0
 
 1. Move cache driver to `Target\PHPRedis\Cache` .
@@ -23,7 +28,8 @@
 
 ```
 'phpredis' => [
-    'driver' => 'phpredis'
+    'driver' => 'phpredis',
+    'connection' => 'default',
 ],
 ```
 
@@ -56,6 +62,6 @@ to **connections** in *config/queue.php* or *vendor/larvel/lumen-framework/confi
 - With `app('cache')` , read [Lumen document](https://lumen.laravel.com/docs/5.2/cache) 
 - With `app('queue')` , read [Lumen document](https://lumen.laravel.com/docs/5.2/queues) 
 
-## Important
+## About the author
 
-**This is just an example.**
+- Blog:[http://targetliu.com](http://targetliu.com)

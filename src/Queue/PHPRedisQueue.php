@@ -6,6 +6,7 @@ use Illuminate\Contracts\Queue\Queue as QueueContract;
 use Illuminate\Queue\Queue;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use TargetLiu\PHPRedis\Database;
 
 class PHPRedisQueue extends Queue implements QueueContract
 {
@@ -15,6 +16,13 @@ class PHPRedisQueue extends Queue implements QueueContract
      * @var \Redis
      */
     protected $redis;
+
+    /**
+     * The connection name.
+     *
+     * @var string
+     */
+    protected $connection;
 
     /**
      * The name of the default queue.
@@ -38,7 +46,7 @@ class PHPRedisQueue extends Queue implements QueueContract
      * @param  string  $connection
      * @return void
      */
-    public function __construct(\Redis $redis, $default = 'default')
+    public function __construct(Database $redis, $default = 'default', $connection = 'default')
     {
         $this->redis = $redis;
         $this->default = $default;
@@ -292,7 +300,7 @@ class PHPRedisQueue extends Queue implements QueueContract
      */
     protected function getConnection()
     {
-        return $this->redis;
+        return $this->redis->connection($this->connection);
     }
 
     /**

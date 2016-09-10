@@ -22,17 +22,7 @@ class PHPRedisServiceProvider extends ServiceProvider
     {
         $this->app->singleton('phpredis', function ($app) {
             $app->configure('database');
-            $redis = new \Redis;
-            $redis->pconnect($app->config['database.redis.default.host']);
-
-            if (!empty($app->config['database.redis.default.password'])) {
-                $redis->auth($app->config['database.redis.default.password']);
-            }
-            
-            if (!empty($app->config['database.redis.default.database'])) {
-                $redis->select($app->config['database.redis.default.database']);
-            }
-            return $redis;
+            return new Database($app->config['database.redis']);
         });
     }
 

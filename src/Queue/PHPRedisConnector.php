@@ -4,6 +4,7 @@ namespace TargetLiu\PHPRedis\Queue;
 
 use Illuminate\Support\Arr;
 use Illuminate\Queue\Connectors\ConnectorInterface;
+use TargetLiu\PHPRedis\Database;
 
 class PHPRedisConnector implements ConnectorInterface
 {
@@ -14,6 +15,13 @@ class PHPRedisConnector implements ConnectorInterface
      */
     protected $redis;
 
+    /**
+     * The connection name.
+     *
+     * @var string
+     */
+    protected $connection;
+
 
     /**
      * Create a new Redis queue connector instance.
@@ -21,9 +29,10 @@ class PHPRedisConnector implements ConnectorInterface
      * @param  \Redis  $redis
      * @return void
      */
-    public function __construct(\Redis $redis)
+    public function __construct(Database $redis, $connection = null)
     {
         $this->redis = $redis;
+        $this->connection = $connection;
     }
 
     /**
@@ -35,7 +44,7 @@ class PHPRedisConnector implements ConnectorInterface
     public function connect(array $config)
     {
         $queue = new PHPRedisQueue(
-            $this->redis, $config['queue']
+            $this->redis, $config['queue'], Arr::get($config, 'connection', $this->connection)
         );
 
         $queue->setExpire(Arr::get($config, 'expire', 60));

@@ -22,16 +22,24 @@ class PHPRedisStore implements Store
     protected $prefix;
 
     /**
+     * The Redis connection that should be used.
+     *
+     * @var string
+     */
+    protected $connection;
+
+    /**
      * Create a new Redis store.
      *
      * @param  \Redis  $redis
      * @param  string  $prefix
      * @return void
      */
-    public function __construct($redis, $prefix = '')
+    public function __construct($redis, $prefix = '', $connection = 'default')
     {
         $this->redis = $redis;
         $this->setPrefix($prefix);
+        $this->connection = $connection;
     }
 
     /**
@@ -167,7 +175,18 @@ class PHPRedisStore implements Store
      */
     public function connection()
     {
-        return $this->redis;
+        return $this->redis->connection($this->connection);
+    }
+
+    /**
+     * Set the connection name to be used.
+     *
+     * @param  string  $connection
+     * @return void
+     */
+    public function setConnection($connection)
+    {
+        $this->connection = $connection;
     }
 
     /**
