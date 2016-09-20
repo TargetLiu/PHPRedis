@@ -2,6 +2,10 @@
 
 ## Update
 
+### 1.2.1
+
+1. Different database use different connections.(According to [issue #2](https://github.com/TargetLiu/PHPRedis/issues/2))
+
 ### 1.2.0
 
 1. You can chose different Redis connections.(According to [issue #1](https://github.com/TargetLiu/PHPRedis/issues/1))

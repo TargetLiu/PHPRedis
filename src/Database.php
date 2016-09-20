@@ -28,7 +28,7 @@ class Database
     public function __construct(array $servers = [])
     {
 
-    	Arr::forget($servers, 'cluster');
+        Arr::forget($servers, 'cluster');
         Arr::forget($servers, 'options');
 
         $this->clients = $this->createClient($servers);
@@ -64,7 +64,7 @@ class Database
         $clients = [];
         foreach ($servers as $key => $server) {
             $clients[$key] = new \Redis();
-            $clients[$key]->pconnect($server['host']);
+            $clients[$key]->pconnect($server['host'], $server['port'], 0, $key . $server['database']);
 
             if (!empty($server['password'])) {
                 $clients[$key]->auth($server['password']);
@@ -82,12 +82,11 @@ class Database
      * Get a specific Redis connection instance.
      *
      * @param  string  $name
-     * @return \Predis\ClientInterface|null
+     * @return \Redis
      */
     public function connection($name = 'default')
     {
         $connection = Arr::get($this->clients, $name ?: 'default');
-        $connection->select(Arr::get($this->database, $name ?: '0'));
         return $connection;
     }
 
@@ -100,7 +99,6 @@ class Database
      */
     public function command($method, array $parameters = [])
     {
-    	$this->clients['default']->select($this->database['default']);
         return call_user_func_array([$this->clients['default'], $method], $parameters);
     }
 
