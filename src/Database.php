@@ -2,8 +2,9 @@
 namespace TargetLiu\PHPRedis;
 
 use Illuminate\Support\Arr;
+use Illuminate\Contracts\Redis\Database as DatabaseContract;
 
-class Database
+class Database implements DatabaseContract
 {
     /**
      * The host address of the database.
