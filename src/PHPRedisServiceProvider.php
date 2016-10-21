@@ -20,7 +20,7 @@ class PHPRedisServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('phpredis', function ($app) {
+        $this->app->singleton('redis', function ($app) {
             $app->configure('database');
             return new Database($app->config['database.redis']);
         });
