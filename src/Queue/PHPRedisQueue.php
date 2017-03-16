@@ -50,6 +50,20 @@ class PHPRedisQueue extends Queue implements QueueContract
     {
         $this->redis = $redis;
         $this->default = $default;
+        $this->connection = $connection;
+    }
+
+    /**
+     * Get the size of the queue.
+     *
+     * @param  string  $queue
+     * @return int
+     */
+    public function size($queue = null)
+    {
+        $queue = $this->getQueue($queue);
+
+        return $this->getConnection()->eval(LuaScripts::size(), 3, $queue, $queue.':delayed', $queue.':reserved');
     }
 
     /**
